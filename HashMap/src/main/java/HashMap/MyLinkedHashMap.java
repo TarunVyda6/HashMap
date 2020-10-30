@@ -59,6 +59,17 @@ public class MyLinkedHashMap<k, v> {
 		return index;
 	}
 
+	public void remove(k key) {
+		int index = this.getBucketIndex(key);
+		MyLinkedList<k> list = this.myBucketArray.get(index);
+		if (list == null) {
+			System.out.println("The key does not exist");
+			return;
+		}
+		MyMapNode<k, v> myMapNode = (MyMapNode) list.search(key);
+		list.delete(key);
+	}
+
 	@Override
 	public String toString() {
 		return "MyLinkedHashMap List{" + myBucketArray + "}";
